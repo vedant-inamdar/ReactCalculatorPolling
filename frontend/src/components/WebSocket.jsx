@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import io from "socket.io-client";
 import "./Calculator.css";
 import LogTable from "./LogTable";
 
-const Calculator = () => {
+const WebSocket = () => {
   const [expression, setExpression] = useState("");
   const [logs, setLogs] = useState([]);
+
+  const socket = io("http://localhost:8080"); // Ensure this matches your server's address
+
+  useEffect(() => {
+    // Listen for new logs from the server
+    socket.on("log", (log) => {
+      setLogs((prevLogs) => [log, ...prevLogs]);
+    });
+
+    // Fetch the initial logs
+    fetchLogs();
+
+    return () => {
+      socket.disconnect(); // Clean up the socket connection on component unmount
+    };
+  }, []);
 
   const handleClick = (value) => {
     if (!isNaN(value) || value === ".") {
@@ -23,17 +40,13 @@ const Calculator = () => {
     }
   };
 
-  //Local url: "http://localhost:8080/api/logs"
   const evaluate = async () => {
     try {
       const res = eval(expression); // Evaluate expression
       setExpression(res.toString()); // Update expression to display the result
       await axios.post("http://localhost:8080/api/logs", {
         expression: expression,
-        isValid: true,
-        output: res,
       });
-      fetchLogs();
     } catch (error) {
       setExpression("Error");
       await axios.post("http://localhost:8080/api/logs", {
@@ -41,7 +54,6 @@ const Calculator = () => {
         isValid: false,
         output: null,
       });
-      fetchLogs();
     }
   };
 
@@ -53,10 +65,6 @@ const Calculator = () => {
       console.error("Error fetching logs:", error);
     }
   };
-
-  useEffect(() => {
-    fetchLogs();
-  }, []);
 
   return (
     <div className="holder">
@@ -145,4 +153,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default WebSocket;

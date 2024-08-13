@@ -1,0 +1,28 @@
+nav {
+  padding: 10px;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 9px;
+}
+
+nav button {
+  background-color: rgb(182, 5, 182);
+  border: none;
+  border-radius: 6px;
+  padding: 15px 45px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: blue;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}

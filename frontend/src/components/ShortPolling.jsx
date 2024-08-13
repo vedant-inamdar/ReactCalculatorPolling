@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Calculator.css";
 import LogTable from "./LogTable";
 
-const Calculator = () => {
+const ShortPolling = () => {
   const [expression, setExpression] = useState("");
   const [logs, setLogs] = useState([]);
 
@@ -23,7 +23,6 @@ const Calculator = () => {
     }
   };
 
-  //Local url: "http://localhost:8080/api/logs"
   const evaluate = async () => {
     try {
       const res = eval(expression); // Evaluate expression
@@ -56,6 +55,8 @@ const Calculator = () => {
 
   useEffect(() => {
     fetchLogs();
+    const interval = setInterval(fetchLogs, 3000);
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return (
@@ -145,4 +146,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default ShortPolling;

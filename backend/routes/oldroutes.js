@@ -7,7 +7,6 @@ const router = express.Router();
 
 // Array to keep track of clients waiting for new data
 let waitingClients = [];
-let evaluationCount = 0; // To track how many calculations have been done
 
 // Middleware to handle database operations
 const handleDbOperation = (operation) => async (req, res, next) => {
@@ -47,32 +46,14 @@ router.post(
     await calculatorLog.save();
     logger.info(`Expression logged: ${expression} | Valid: ${isValid}`);
 
-    evaluationCount++;
-
     // Notify waiting clients (short/long polling)
-    if (evaluationCount >= 5) {
-      const logs = await CalculatorLog.find()
-        .sort({ createdOn: -1 })
-        .limit(5)
-        .exec();
+    const logs = await CalculatorLog.find()
+      .sort({ createdOn: -1 })
+      .limit(10)
+      .exec();
 
-      waitingClients.forEach((client) => {
-        let index = 0;
-        const intervalId = setInterval(() => {
-          if (index < logs.length) {
-            client.res.write(JSON.stringify(logs[index]) + "\n");
-            index++;
-          } else {
-            clearInterval(intervalId);
-            client.res.end();
-            evaluationCount = 0; // Reset after streaming
-          }
-        }, 1000); // Send each log after 1 second
-      });
-
-      waitingClients = []; // Clear the waiting clients
-      req.io.emit("log", calculatorLog);
-    }
+    waitingClients.forEach((client) => client.res.json(logs));
+    waitingClients = []; // Clear the waiting clients
 
     // Emit the new log to all connected WebSocket clients
     req.io.emit("log", calculatorLog);
@@ -91,9 +72,6 @@ router.post(
 router.get(
   "/logs/long-poll",
   handleDbOperation(async (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    res.setHeader("Cache-Control", "no-cache");
-    res.setHeader("Connection", "keep-alive");
     waitingClients.push({ req, res });
     // If the request is open for too long, close it to avoid resource leaks
     req.on("close", () => {
