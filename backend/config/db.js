@@ -9,9 +9,7 @@ const MONGODB_URI =
 // Function to establish connection to MongoDB
 const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URI, {
-      useUnifiedTopology: true, // Ensure unified topology
-    });
+    await mongoose.connect(MONGODB_URI);
     console.log("Connected to MongoDB");
     logger.info("Connected to MongoDB");
   } catch (err) {

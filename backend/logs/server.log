@@ -10462,3 +10462,48 @@ info: Aug-13-2024 13:35:20: 	Expression logged: 36 | Valid: true
 info: Aug-13-2024 13:35:21: 	Expression logged: 36 | Valid: true
 info: Aug-13-2024 13:35:21: 	Expression logged: 36 | Valid: true
 info: Aug-13-2024 13:35:21: 	Expression logged: 36 | Valid: true
+info: Sep-16-2024 13:11:22: 	Server started on port 8080
+info: Sep-16-2024 13:11:23: 	Connected to MongoDB
+info: Sep-16-2024 13:11:39: 	Server started on port 8080
+info: Sep-16-2024 13:11:41: 	Connected to MongoDB
+info: Sep-16-2024 13:11:53: 	Successfully retrieved logs
+info: Sep-16-2024 13:11:56: 	Successfully retrieved logs
+info: Sep-16-2024 13:11:59: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:02: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:05: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:05: 	Expression logged: 8-6 | Valid: true
+info: Sep-16-2024 13:12:05: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:08: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:11: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:17: 	Expression logged: 5+3 | Valid: true
+warn: Sep-16-2024 13:12:18: 	Invalid expression attempted: 8+
+info: Sep-16-2024 13:12:18: 	Expression logged: 8+ | Valid: false
+info: Sep-16-2024 13:12:25: 	Expression logged: 33+3 | Valid: true
+info: Sep-16-2024 13:12:28: 	Expression logged: 36+2 | Valid: true
+info: Sep-16-2024 13:12:31: 	Expression logged: 38-6 | Valid: true
+info: Sep-16-2024 13:12:42: 	New WebSocket client connected
+info: Sep-16-2024 13:12:42: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:42: 	New WebSocket client connected
+info: Sep-16-2024 13:12:42: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:42: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:42: 	New WebSocket client connected
+info: Sep-16-2024 13:12:42: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:42: 	New WebSocket client connected
+info: Sep-16-2024 13:12:44: 	New WebSocket client connected
+info: Sep-16-2024 13:12:45: 	New WebSocket client connected
+info: Sep-16-2024 13:12:46: 	New WebSocket client connected
+info: Sep-16-2024 13:12:48: 	New WebSocket client connected
+info: Sep-16-2024 13:12:48: 	Expression logged: 3+6 | Valid: true
+info: Sep-16-2024 13:12:48: 	New WebSocket client connected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:49: 	New WebSocket client connected
+info: Sep-16-2024 13:12:49: 	Successfully retrieved logs
+info: Sep-16-2024 13:12:49: 	New WebSocket client connected
+info: Sep-16-2024 13:12:52: 	WebSocket client disconnected
+info: Sep-16-2024 13:12:53: 	WebSocket client disconnected
